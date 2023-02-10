@@ -1,0 +1,15 @@
+CH1_RESORT_PLAYER_ROOM
+You have been enjoying the comforts of this delightful, economy room at The Snowy Egret Resort during your well-earned and long-anticipated vacation! Besides a (somewhat) comfortable twin bed, your (not at all) spacious room includes a desk, closet, and entertainment system (a 20" screen with a stylish On button). Since you are on a space station, there are no windows though which to gaze at the vast nothingness of the dark void. A door in the north wall leads to a tiny bathroom (sans bath) and a door in the west wall leads to the hallway.
+#
+CH1_RESORT_PLAYER_BATHROOM
+There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "commode" state (meaning there is a hole in the floor). A door leads south back to your room.
+#
+CH1_RESORT_PLAYER_BATHROOM_A
+There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "shower" state (meaning there is a hole in the floor and a nozel protruding from the ceiling). A door leads south back to your room.
+#
+CH1_RESORT_PLAYER_BATHROOM_B
+There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "sink" state (meaning there is a hole in the floor and a nozel protruding from the wall). A door leads south back to your room.
+#
+CH1_RESORT_SOUTH_HALL
+This carpeted hallway features doors to various guest rooms. These are all economy rooms, of course. You don't have access to the suite or penthouse levels of The Snowy Egret. There are doorways in the east (to your room), west, and south walls. The hallway extends north.
+#

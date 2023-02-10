@@ -1,19 +1,15 @@
 package world;
 
 import game.*;
+import world.ch1.*;
 //import items.*;
 //import characters.*;
 
 /**
- * Hotel Escape - a demo text adventure developed using FlossTAGE.
+ * Slipstream Onyx: Chapter 1 - a text adventure developed using FlossTAGE.
  * 
- * This short game consists of 16 rooms, 32 items, and 5 NPCs.
  * 
- * The World class constructs the game world by creating all rooms,
- * most items and three NPCs. Additional items and NPCs are created
- * dynamically as the player progresses through the game.
- * 
- * @version beta (2022)
+ * @version alpha (2023)
  *
  */
 public class World {
@@ -38,7 +34,9 @@ public class World {
 	public static final String GAME_OVER_TEXT = "I guess we're done here. Thanks for playing. Bye!";
 	
 	public static void buildWorld() {
-
+		World_Ch1.buildWorld();
+		
+		Game.setCurrentRoom(Game.getRoom("CH1_RESORT_PLAYER_ROOM"));
 	}
 
 	
