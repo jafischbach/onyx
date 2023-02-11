@@ -1,4 +1,4 @@
-package items.ch1;
+package items.ch1.resort;
 
 import game.*;
 

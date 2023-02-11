@@ -1,7 +1,6 @@
 package world;
 
 import game.*;
-import world.ch1.*;
 //import items.*;
 //import characters.*;
 
