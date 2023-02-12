@@ -14,6 +14,10 @@ public class World_Ch1 {
 		Room playerBath = new Room("CH1_RESORT_PLAYER_BATHROOM", "Your \"Bathroom\"");
 		Room southHall = new Room("CH1_RESORT_SOUTH_HALL", "The Snowy Egret South Hall");
 		
+		Game.addFlag("dirty");
+		Game.addFlag("smelly");
+		Game.addFlag("undressed");
+		
 		playerRoom.addExit(playerBath, Room.NORTH);
 		playerRoom.addExit(southHall, Room.WEST);
 		playerRoom.addItem(new Bed());

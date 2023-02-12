@@ -20,6 +20,9 @@ import world.World;
  * 
  * @author J Adam Fischbach
  * @version 1.0
+ * 
+ *      MODIFIED
+ *      
  */
 public class Game {
 	
@@ -327,6 +330,16 @@ public class Game {
 		return flags.containsKey(flag);
 	}
 
+	/**
+	 * Removes the specified flag.
+	 * 
+	 * @param flag flag to remove
+	 */
+	public static void removeFlag(String flag) {
+		if (flags != null)
+			flags.remove(flag);
+	}
+	
 	/**
 	 * Adds the given simple item and item description to the
 	 * global list of simple items.

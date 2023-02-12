@@ -52,6 +52,16 @@ public class Nozzel extends Item {
 				Game.print("You turn the nozzel so that it points to the floor and a cool stream"
 						+ " of water starts pouring onto the floor.");
 				isOn = true;
+				if (Game.hasFlag("dirty")) {
+					Game.print("You cup your hands beneath the stream of water and wait patiently for"
+							+ " your hands to fill, whistling a nameless tune to pass the time. Once"
+							+ " your hands are full, you splash the cool, mostly clean, water onto"
+							+ " your face. You repeat the process with other, strategic, parts of your"
+							+ " body until you've completed the best approximation of a shower you can"
+							+ " manage given the apparatus you have to work with.");
+					Game.print("You're (sorta) clean now, but still smelly.");
+					Game.removeFlag("dirty");
+				}
 			}
 		}
 	}
