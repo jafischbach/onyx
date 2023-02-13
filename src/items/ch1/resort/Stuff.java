@@ -17,7 +17,7 @@ public class Stuff extends Item {
 
 	@Override
 	public void look() {
-		Game.print("It's your Milt-Maalt Transport ID card, your paycard, and an itineratry");
+		Game.print("It's your Milt-Maalt Transport ID card, your paycard, and an itineratry.");
 		Room r = Game.getCurrentRoom();
 		if (!r.hasItem("paycard")) {
 			r.addItem(idCard);
@@ -40,6 +40,7 @@ public class Stuff extends Item {
 			r.removeItem("paycard");
 			r.removeItem("itinerary");
 			r.removeItem("stuff");
+			Game.getRoom("CH1_RESORT_SOUTH_HALL").setLocked(false);
 		}
 	}
 

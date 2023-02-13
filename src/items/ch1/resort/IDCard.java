@@ -14,4 +14,14 @@ public class IDCard extends Item {
 				+ " Transport Company.");
 	}
 	
+	@Override
+	public void take(String how) {
+		if (Game.player.has("ID card"))
+			Game.print("You already have the ID card.");
+		else {
+			Game.print("Might as well take all your stuff.");
+			Game.getCurrentRoom().getItem("stuff").take(how);
+		}
+	}
+	
 }

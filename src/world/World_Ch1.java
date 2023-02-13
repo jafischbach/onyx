@@ -36,6 +36,7 @@ public class World_Ch1 {
 		playerBath.addItem(new Grate());
 		
 		southHall.addExit(playerRoom, Room.EAST);		
+		southHall.setLocked(true);
 	}
 	
 }

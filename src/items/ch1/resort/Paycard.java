@@ -14,4 +14,14 @@ public class Paycard extends Item {
 				+ " have access to.");
 	}
 	
+	@Override
+	public void take(String how) {
+		if (Game.player.has("paycard"))
+			Game.print("You already have the paycard.");
+		else {
+			Game.print("Might as well take all your stuff.");
+			Game.getCurrentRoom().getItem("stuff").take(how);
+		}
+	}
+	
 }

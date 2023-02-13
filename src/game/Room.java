@@ -2,11 +2,15 @@ package game;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
  * Each room in the game is represented by an object of this class.
  * Room objects are linked together to form the game world.
+ * 
+ * 		MODIFIED
+ * 
  */
 public class Room implements Serializable {
 
@@ -103,9 +107,12 @@ public class Room implements Serializable {
 	public void removeItem(String name) {
 		if (items != null) {
 			Item removedItem = items.remove(name);
-			for(Map.Entry<String, Item> entry : items.entrySet())
+			Iterator<Map.Entry<String, Item>> it = items.entrySet().iterator();
+			while(it.hasNext()) {
+				Map.Entry<String, Item> entry = it.next();
 				if (removedItem == entry.getValue())
-					items.remove(entry.getKey());
+					it.remove();
+			}
 		}
 	}
 

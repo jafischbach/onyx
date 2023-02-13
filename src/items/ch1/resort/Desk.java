@@ -16,8 +16,11 @@ public class Desk extends Item {
 			Game.print("Just a plain desk. Like everything else in the room, it's cheap but serviceable."
 					+ " There is a stick of deodorant sitting on the desk.");
 			Room r = Game.getCurrentRoom();
-			if (!r.hasItem("deodorant"))
-				r.addItem(new Deodorant());
+			if (!r.hasItem("deodorant")) {
+				Deodorant d = new Deodorant();
+				r.addItem(d);
+				r.addItem(d, "stick");
+			}
 		}
 	}
 

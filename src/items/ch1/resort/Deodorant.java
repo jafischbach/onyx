@@ -40,11 +40,11 @@ public class Deodorant extends Item {
 	public void take(String how) {
 		if (Game.player.has("deodorant"))
 			Game.print("You already have the stick of deodorant.");
-		else if (Game.hasFlag("smelly"))
+		else if (Game.hasFlag("dirty"))
 			Game.print("You should probably stake a \"shower\" first, don't you think?");
 		else {
-			Game.print("You grab the stick of deodorant and shove it in your pocket. No way you're"
-					+ " going outside with out that!");
+			Game.print("You grab the stick of deodorant. No way you're"
+					+ " going outside without that!");
 			Game.player.addItem(this);
 			Game.getCurrentRoom().removeItem("deodorant");
 		}
