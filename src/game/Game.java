@@ -517,7 +517,10 @@ public class Game {
 	// Main game loop for console applications. 
 	private static void playText() {
 		player = new Player();
-		print(World.INTRO_TEXT);
+		if (World.DEBUG_MODE)
+			World.debugMode();
+		else
+			print(World.INTRO_TEXT);
 		print(currentRoom.getDesc());
 		do {
 			System.out.print("What do you want to do? ");
@@ -530,9 +533,12 @@ public class Game {
 	// Initializes the GUI for GUI applications.
 	private static void playGUI() {
 		player = new Player();
+		if (World.DEBUG_MODE)
+			World.debugMode();
 		GameGUI.buildWindow();
 		printRoom();
-		print(World.INTRO_TEXT);
+		if (!World.DEBUG_MODE)
+			print(World.INTRO_TEXT);
 	}
 
 	/**

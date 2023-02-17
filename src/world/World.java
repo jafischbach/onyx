@@ -1,7 +1,7 @@
 package world;
 
 import game.*;
-//import items.*;
+import items.ch1.resort.*;
 //import characters.*;
 
 /**
@@ -13,6 +13,8 @@ import game.*;
  */
 public class World {
 
+	public static final boolean DEBUG_MODE = true;
+	
 	/**
 	 * Game title.
 	 */
@@ -38,5 +40,13 @@ public class World {
 		Game.setCurrentRoom(Game.getRoom("CH1_RESORT_PLAYER_ROOM"));
 	}
 
+	public static void debugMode() {
+		Game.player.addItem(new Deodorant());
+		Game.player.addItem(new IDCard());
+		Game.player.addItem(new Itinerary());
+		Game.player.addItem(new Paycard());
+		Game.player.addItem(new Clothes());
+		Game.getRoom("CH1_RESORT_SOUTH_HALL").setLocked(false);
+	}
 	
 }

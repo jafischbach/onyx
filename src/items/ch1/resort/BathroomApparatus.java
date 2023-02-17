@@ -18,7 +18,7 @@ public class BathroomApparatus extends Item {
 	public void look() {
 		if (state == 1)
 			Game.print("A hole in the floor provides a convenient destination for all of your"
-					+ " bodily waste. Just aim and/or squat and do what you gotta do!");
+					+ " bodily waste.");
 		else if (state == 2)
 			Game.print("A nozzel protrudes from the ceiling, presumably to dispense warm water"
 					+ " under which you could clense yourself. The hole in the floor serves as a"

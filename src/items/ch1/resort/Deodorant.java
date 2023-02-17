@@ -41,7 +41,7 @@ public class Deodorant extends Item {
 		if (Game.player.has("deodorant"))
 			Game.print("You already have the stick of deodorant.");
 		else if (Game.hasFlag("dirty"))
-			Game.print("You should probably stake a \"shower\" first, don't you think?");
+			Game.print("You should probably take a \"shower\" first, don't you think?");
 		else {
 			Game.print("You grab the stick of deodorant. No way you're"
 					+ " going outside without that!");

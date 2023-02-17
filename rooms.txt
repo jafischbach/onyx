@@ -1,5 +1,5 @@
 CH1_RESORT_PLAYER_ROOM
-You have been enjoying the comforts of this delightful, economy room at The Snowy Egret Resort during your well-earned and long-anticipated vacation! Besides a (somewhat) comfortable twin bed, your (not at all) spacious room includes a desk, closet, and entertainment system (a 20" screen with a stylish On button). Since you are on a space station, there are no windows though which to gaze at the vast nothingness of the dark void. A door in the north wall leads to a tiny bathroom (sans bath) and a door in the west wall leads to the hallway.
+You have been enjoying the comforts of this delightful, economy room at The Snowy Egret Resort during your well-earned and long-anticipated vacation! Besides a (somewhat) comfortable twin bed, your (not at all) spacious room includes a desk, closet, and entertainment system (a 20" screen with a stylish On button). Since you are on a space station, there are no windows through which to gaze at the vast nothingness of the dark void. A door in the north wall leads to a tiny bathroom (sans bath) and a door in the west wall leads to the hallway.
 #
 CH1_RESORT_PLAYER_BATHROOM
 There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "commode" state (meaning there is a hole in the floor). A door leads south back to your room.
@@ -12,4 +12,35 @@ There is a combination sink/commode/shower apparatus and absolutely nothing else
 #
 CH1_RESORT_SOUTH_HALL
 This carpeted hallway features doors to various guest rooms. These are all economy rooms, of course. You don't have access to the suite or penthouse levels of The Snowy Egret. There are doorways in the east (to your room), west, and south walls. The hallway extends north.
+#
+CH1_RESORT_LOBBY
+This is the grand lobby of The Snowy Egret Resort. An impressive reception desk that might be made out of actual wood dominates the room. The usual receptionist, a nice lady named Violet, is not currently at her post. That's too bad. Hopefully she'll be back soon; you need to check your messages.
+
+A carpeted staircase winds up to the second floor (or is it the second deck since you're on a space station and all?) with access to the restaurant, observation lounge, and 5-star spa! A gift shop is off to the east and hallways lead north and south. The resort's main entrance lays to the west.
+#
+CH1_RESORT_NORTH_HALL
+Brightly lit and colored in shades of blue and green, this hallway leads to the pool, the entrance to which is at the north end. A door to one of the economy guest rooms is to the west and another door, marked "Staff", is to the east. The south end of the hallway leads back to the lobby.
+#
+CH1_RESORT_POOL
+No one is currently enjoying the large pool that dominates the room. In fact, the only other people here are Urias and a pool attendant. The only exit is to the south.
+#
+CH1_RESORT_GIFT_SHOP
+You've avoided this place since your first day here because you assumed it was full of useless, over-priced, tourist crap. Looking around now, you are not at all surprised to learn that your assumption was correct. Snowglobes? Cuckoo clocks? Stuffed animals? Glass figurines? Weird schlock to be selling on a space station.
+
+A clerk stands nearby in the remote chance a guest actually wants to buy something. The exit to the west leads back to the lobby.
+#
+CH1_RESORT_2ND_FLOOR
+The second floor (deck?) lobby features elevators along the east wall and glass doors to the north and south. Sparkling green letters mounted above the northern doors announce "Gustav Murray's Cajun Cafe and Ice Cream Bar". You've had three meals there every day this week! You have no idea who the hell Gustav Murray is, but the dude doesn't disappoint. The glass doors along the south wall more modestly bear the name "The Snowy Egret Health Spa and Meditation Experience". Sadly, the spa wasn't included in your vacation package and you've never seen the other side of those doors.
+#
+CH1_RESORT_RESTAURANT
+Gustav Murray's Cajun Cafe and Ice Cream Bar! You're pretty sure there's nothing actually Cajun about the place. Aside from that, this place is amazing! It's all self-service. There's a screen embedded in each of the tables that you order from and your food is lowered from the ceiling. So cool! You even dig the weird-ass music.
+#
+CH1_RESORT_ELEVATOR
+The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labelled "2nd Floor", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and pentouse levels. You don't have access to those. The doors lead west to the 2nd floor lobby.
+#
+CH1_RESORT_ELEVATOR_B
+The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labelled "2nd Floor", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and pentouse levels. You don't have access to those. The doors lead west to the Observation Lounge.
+#
+CH1_RESORT_OBSERVATION_LOUNGE
+You've spent a lot of time here watching the huge viewscreen. They don't build actual windows on a space station, but the viewscreen offers a convincing facsimile. A few other guests are milling about, but no one you've gotten to know.
 #
