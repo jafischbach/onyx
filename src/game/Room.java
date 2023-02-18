@@ -93,10 +93,12 @@ public class Room implements Serializable {
 			if (!Game.roomItems.containsKey(roomLabel))
 				Game.roomItems.put(roomLabel, new HashMap<String, Item>());
 			Game.roomItems.get(roomLabel).put(name, item);
+			Game.roomItems.get(roomLabel).put(name+"s", item);
 		} else {
 			if (items == null)
 				items = new HashMap<String, Item>();
 			items.put(name, item);
+			items.put(name+"s", item);
 		}
 	}
 
@@ -316,6 +318,7 @@ public class Room implements Serializable {
 		if (simpleItems == null)
 			simpleItems = new HashMap<String, String>();
 		simpleItems.put(name, label);
+		simpleItems.put(name+"s", label);
 	}
 	
 	/**
@@ -353,7 +356,7 @@ public class Room implements Serializable {
 			return null;
 		}
 	}
-
+	
 	/**
 	 * Returns the room the player enters when travelling East from this room.
 	 * @return room to the east of this room

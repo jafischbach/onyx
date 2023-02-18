@@ -357,11 +357,12 @@ public class Game {
 	/**
 	 * Returns the description of the specified simple item.
 	 * 
-	 * @param name name of simple item
+	 * @param label label of simple item
 	 * @return simple item's description
 	 */
-	protected static String getSimpleItem(String name) {
-		return simpleItems.get(name);
+	protected static String getSimpleItem(String label) {
+		String desc = simpleItems.get(label);
+		return desc == null ? itemDescs.get(label) : desc;
 	}
 
 	/**

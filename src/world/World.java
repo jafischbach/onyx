@@ -18,7 +18,7 @@ public class World {
 	/**
 	 * Game title.
 	 */
-	public static final String TITLE = "Slipstream Onyx";
+	public static final String TITLE = "Slipstream Onyx - Chapter 1";
 	
 	/**
 	 * Game version number.
@@ -47,6 +47,7 @@ public class World {
 		Game.player.addItem(new Paycard());
 		Game.player.addItem(new Clothes());
 		Game.getRoom("CH1_RESORT_SOUTH_HALL").setLocked(false);
+		Game.setCurrentRoom(Game.getRoom("CH1_RESORT_GIFT_SHOP"));
 	}
 	
 }
