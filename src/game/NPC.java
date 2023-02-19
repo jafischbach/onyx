@@ -10,6 +10,9 @@ import javax.swing.JOptionPane;
  * 
  * Define a new NPC by extending this class and overriding
  * relevant methods.
+ * 
+ * 			MODIFIED
+ * 
  */
 public abstract class NPC implements Serializable {
 
@@ -18,6 +21,7 @@ public abstract class NPC implements Serializable {
 	private static Random rand = new Random();
 	
 	private String name;		// NPC's name
+	private String displayName; // Name displayed in dialog
 	private String descLabel;	// Label for NPC description
 	private int health;			// NPC's current health
 
@@ -31,7 +35,9 @@ public abstract class NPC implements Serializable {
 	 */
 	public NPC(String label, String name) {
 		this.name = name;
+		displayName = Character.toUpperCase(name.charAt(0))+name.substring(1);
 		descLabel = label;
+		health = 100;
 		if (!Game.npcDescs.containsKey(descLabel))
 			throw new InvalidLabelException(label);
 	}
@@ -43,6 +49,7 @@ public abstract class NPC implements Serializable {
 	 */
 	public NPC(String name) {
 		this.name = name;
+		displayName = Character.toUpperCase(name.charAt(0))+name.substring(1);
 		descLabel = name;
 		health = 100;
 	}
@@ -143,7 +150,7 @@ public abstract class NPC implements Serializable {
 	 * @param s NPC dialog
 	 */
 	public void say(String s) {
-		Game.print(name + ": " + s);
+		Game.print(displayName + ": " + s);
 	}
 
 	/**

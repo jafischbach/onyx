@@ -13,6 +13,9 @@ import java.io.IOException;
 
 /**
  * This class implements the GUI for the game.
+ * 
+ * 		MODIFIED
+ * 
  */
 public class GameGUI {
 
@@ -88,7 +91,7 @@ public class GameGUI {
 		mainPanel.add(buildRoomDisplay(), c);
 		c.gridy = 1;
 		c.gridheight = 2;
-		c.ipady = 100;
+		c.ipady = 250;
 		mainPanel.add(buildDisplay(), c);
 		window.add(mainPanel, BorderLayout.CENTER);
 		window.add(buildCommandPanel(), BorderLayout.SOUTH);

@@ -2,6 +2,7 @@ package world;
 
 import game.*;
 import items.ch1.resort.*;
+import characters.ch1.*;
 
 public class World_Ch1 {
 
@@ -88,6 +89,8 @@ public class World_Ch1 {
 				"Snowglobes, cuckoo clocks, stuffed animals, and glass figurines. Just a"
 				+ " bunch of crap designed to extract money from suckers on vacation. You"
 				+ " are not a sucker, so none of it is of use to you.");
+		giftShop.addNPC(new GiftShopClerk());
+		giftShop.addNPC(new GiftShopClerk(), "clerk");
 	}
 	
 }
