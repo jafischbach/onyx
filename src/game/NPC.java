@@ -174,10 +174,12 @@ public abstract class NPC implements Serializable {
 		for (int i = 0; i < options.length; i++) {
 			s += "OPTION " + (i + 1) + ": " + options[i] + "\n\n";
 		}
-		Game.print(s.substring(0, s.length() - 2));
-		s = "Select an option (1-" + options.length + "): ";
+//		Game.print(s.substring(0, s.length() - 2));
+//		s = "Select an option (1-" + options.length + "): ";
 		try {
 			if (Game.CONSOLE) {
+				Game.print(s.substring(0, s.length() - 2));
+				s = "Select an option (1-" + options.length + "): ";
 				int choice = Game.getInt(s, "Dialog");
 				if (choice > 0 && choice <= options.length)
 					response(choice);
@@ -186,8 +188,9 @@ public abstract class NPC implements Serializable {
 					getResponse(options);
 				}
 			} else {
-				Game.print(s);
-				Game.convoResponseGUI(this, options.length);
+				//Game.print(s);
+				s += "Select an option (1-" + options.length + "): ";
+				Game.convoResponseGUI(this, s, options.length);
 			}
 		} catch (CancelledInputException ex) {
 			JOptionPane.showMessageDialog(GameGUI.window, "You must select an option.", "Error",

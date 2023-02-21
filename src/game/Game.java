@@ -65,8 +65,10 @@ public class Game {
 	// These fields are used by GameGUI to manage user responses to NPC
 	// conversations.
 	protected static boolean convo = false;
+	protected static boolean convoPause = false;
 	protected static int convoOptions;
 	protected static NPC character;
+	protected static String optionsString;
 
 	// Various game data structures
 	protected static HashMap<String, Room> rooms; // All room objects
@@ -99,7 +101,8 @@ public class Game {
 		if (CONSOLE)
 			System.out.println(s + "\n");
 		else
-			GameGUI.display.append(s + "\n\n");
+			GameGUI.print(s + "\n\n");
+			//GameGUI.display.append(s + "\n\n");
 	}
 	
 	/**
@@ -133,10 +136,11 @@ public class Game {
 	 * @param character NPC engaged in dialog with the player
 	 * @param convoOptions number of potential player responses
 	 */
-	public static void convoResponseGUI(NPC character, int convoOptions) {
-		convo = true;
+	public static void convoResponseGUI(NPC character, String optionsString, int convoOptions) {
+		convoPause = true;
 		Game.character = character;
 		Game.convoOptions = convoOptions;
+		Game.optionsString = optionsString;
 	}
 
 	/**

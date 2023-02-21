@@ -14,37 +14,47 @@ import java.io.IOException;
 /**
  * This class implements the GUI for the game.
  * 
- * 		MODIFIED
+ * MODIFIED
  * 
  */
 public class GameGUI {
 
 	public static final int FONT_SIZE = 18;
+	public static final Color RESPONSE_COLOR = Color.BLUE;
+	public static final Color PLAYER_DIALOG_COLOR = new Color(0xa000c8);
+
 	public static final String ICON_FILENAME = "bartenderIcon.png";
 	public static final int WINDOW_HEIGHT = 700;
 	public static final int WINDOW_WIDTH = 800;
-	
+
 	protected static JTextArea display;
 	protected static JTextField command;
 	protected static JFrame window;
 	protected static JMenuItem saveMenuItem;
-	
+
 	private static JLabel roomNameLabel;
 	private static JTextArea roomDisplay;
 	private static String lastCommand = "";
+	private static String lastDialog = "";
+
+	public static void print(String s) {
+		display.append(s);
+		display.setCaretPosition(0);
+	}
 
 	/**
-	 * Displays the given room's description in the
-	 * room display text area.
+	 * Displays the given room's description in the room display text area.
+	 * 
 	 * @param r room to display
 	 */
 	public static void displayRoom(Room r) {
 		roomNameLabel.setText(r.getName());
 		roomDisplay.setText(r.getDesc());
 	}
-	
+
 	/**
 	 * Sets the main text display's color.
+	 * 
 	 * @param c text color
 	 */
 	public static void setResponseColor(Color c) {
@@ -53,12 +63,13 @@ public class GameGUI {
 
 	/**
 	 * Sets the room display's text color.
+	 * 
 	 * @param c text color
 	 */
 	public static void setRoomColor(Color c) {
 		roomDisplay.setForeground(c);
 	}
-	
+
 	/**
 	 * Builds the window for the game.
 	 */
@@ -67,20 +78,20 @@ public class GameGUI {
 		window.setTitle(World.TITLE);
 		try {
 			window.setIconImage(ImageIO.read(new File(ICON_FILENAME)));
-		} catch(IOException ex) {
-			
+		} catch (IOException ex) {
+
 		}
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		window.setJMenuBar(buildMenuBar());
 
 		window.setLayout(new BorderLayout());
-		
+
 		roomNameLabel = new JLabel("Room");
 		roomNameLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		roomNameLabel.setFont(new Font(null, Font.BOLD, FONT_SIZE));
 		window.add(roomNameLabel, BorderLayout.NORTH);
-		
+
 		JPanel mainPanel = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.BOTH;
@@ -100,7 +111,7 @@ public class GameGUI {
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
 	}
-	
+
 	// Constructs and returns the room display.
 	private static JScrollPane buildRoomDisplay() {
 		roomDisplay = new JTextArea();
@@ -121,13 +132,13 @@ public class GameGUI {
 	private static JScrollPane buildDisplay() {
 		display = new JTextArea();
 		display.setFont(new Font(null, Font.PLAIN, FONT_SIZE));
-		setResponseColor(Color.BLUE);
+		setResponseColor(RESPONSE_COLOR);
 		display.setEditable(false);
 		display.setFocusable(false);
 		display.setLineWrap(true);
 		display.setWrapStyleWord(true);
-		DefaultCaret caret = (DefaultCaret) display.getCaret();
-		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
+//		DefaultCaret caret = (DefaultCaret) display.getCaret();
+//		caret.setUpdatePolicy(DefaultCaret.NEVER_UPDATE);
 		display.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10),
 				BorderFactory.createEtchedBorder()));
 		JScrollPane scrollPane = new JScrollPane(display);
@@ -146,37 +157,61 @@ public class GameGUI {
 		command.addKeyListener(new KeyListener() {
 			public void keyTyped(KeyEvent event) {
 				if (event.getKeyChar() == '\n') {
-					display.setText("");
-					if (Game.convo) {
-						try {
-							int choice = Integer.parseInt(command.getText());
-							if (choice > 0 && choice <= Game.convoOptions) {
-								Game.convo = false;
-								Game.character.response(choice);
-							} else {
-								Game.print("That is not a valid option.");
-							}
-						} catch (NumberFormatException ex) {
-							Game.print("You must enter a number.");
-						}
+					if (Game.convoPause) {
+						lastDialog = display.getText();
+						display.setText("");
+						setResponseColor(PLAYER_DIALOG_COLOR);
+						Game.print(Game.optionsString);
+						Game.convoPause = false;
+						Game.convo = true;
 					} else {
-						//Game.print("--------------------------------------");
-						Game.processCommand(command.getText());
+						display.setText("");
+						if (Game.convo) {
+							try {
+								int choice = Integer.parseInt(command.getText());
+								if (choice > 0 && choice <= Game.convoOptions) {
+									Game.convo = false;
+									setResponseColor(RESPONSE_COLOR);
+									Game.character.response(choice);
+								} else {
+									Game.print("That is not a valid option.");
+									Game.print(Game.optionsString);
+								}
+							} catch (NumberFormatException ex) {
+								Game.print("You must enter a number.");
+								Game.print(Game.optionsString);
+							}
+						} else {
+							// Game.print("--------------------------------------");
+							Game.processCommand(command.getText());
+						}
 					}
-					lastCommand = command.getText();
-					command.setText("");
+					if (!Game.convo)
+						lastCommand = command.getText();
+					if (Game.convoPause)
+						command.setText("<<<<<<<< Press ENTER to continue. >>>>>>>>");
+					else
+						command.setText("");
 				}
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
+
 			}
 
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 					command.setText(lastCommand);
+				}
+				if (e.getKeyCode() == KeyEvent.VK_LEFT && Game.convo) {
+					setResponseColor(Color.BLUE);
+					display.setText("");
+					print(lastDialog);
+					command.setText("<<<<<<<< Press ENTER to continue. >>>>>>>>");
+					Game.convoPause = true;
+					Game.convo = false;
 				}
 			}
 		});
@@ -192,8 +227,8 @@ public class GameGUI {
 		newMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int option = JOptionPane.showConfirmDialog(window,
-						"Are you sure you want to start a new game? You will lose all unsaved progress.",
-						"New Game", JOptionPane.YES_NO_OPTION);
+						"Are you sure you want to start a new game? You will lose all unsaved progress.", "New Game",
+						JOptionPane.YES_NO_OPTION);
 				if (option == JOptionPane.YES_OPTION) {
 					Game.player.clearInventory();
 					Game.startGame();
