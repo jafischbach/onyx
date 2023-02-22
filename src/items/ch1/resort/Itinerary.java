@@ -7,8 +7,11 @@ public class Itinerary extends Item {
 	private String[] list= {"Have breakfast", "Buy gift for Shelly", "Visit observation deck",
 			"Talk to Urias", "Check messages"};
 	
+	private int completed;
+	
 	public Itinerary() {
 		super("itinerary");
+		completed = 0;
 	}
 	
 	@Override
@@ -26,6 +29,14 @@ public class Itinerary extends Item {
 		else {
 			Game.print("Might as well take all your stuff.");
 			Game.getCurrentRoom().getItem("stuff").take(how);
+		}
+	}
+	
+	public void update(int task) {
+		switch(task) {
+		case 1:
+			list[1] = "Buy gift for Shelly (DONE!)";
+			completed++;
 		}
 	}
 	

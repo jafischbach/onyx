@@ -6,12 +6,16 @@ import java.util.Map;
 
 /**
  * The game player is represented by an object of this class.
+ * 
+ * 		MODIFIED
+ * 
  */
 public class Player implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private String name; // Player's name
+	private String displayName; // Player's name displayed in dialog
 	private int health; // Player's current health
 	private String equippedWeapon; // Player's currently equipped weapon
 	private HashMap<String, Item> inventory; // Player's inventory of items
@@ -42,6 +46,7 @@ public class Player implements Serializable {
 	public Player(String name, int health) {
 		this.name = name;
 		this.health = health;
+		displayName = name.toUpperCase();
 		inventory = new HashMap<String, Item>();
 	}
 	
@@ -50,7 +55,7 @@ public class Player implements Serializable {
 	 * @param s player's dialog
 	 */
 	public void say(String s) {
-		Game.print(name + ": " + s);
+		Game.print(displayName + ":\n" + s);
 	}
 	
 	/**
@@ -137,7 +142,7 @@ public class Player implements Serializable {
 		if (inventory.keySet().isEmpty())
 			Game.print("You are carrying nothing!");
 		else {
-			Game.println("You are carrying:");
+			Game.print("You are carrying:");
 			for(String item : inventory.keySet())
 				if (item.equals(equippedWeapon))
 					Game.println(item + " (equipped)");

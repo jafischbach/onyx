@@ -75,7 +75,7 @@ public class World_Ch1 {
 		restaurant.addExit(secondFloor, Room.SOUTH);
 		restaurant.addItem(new Cookie());
 		restaurant.addSimpleItem("plate", "CH1_COOKIE_PLATE",
-				"It's a plate of complimentary, freshly-baked cookies");
+				"It's a plate of complimentary, freshly-baked cookies.");
 	}
 	
 	private static void makeGiftShop(Room giftShop) {

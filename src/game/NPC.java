@@ -49,7 +49,7 @@ public abstract class NPC implements Serializable {
 	 */
 	public NPC(String name) {
 		this.name = name;
-		displayName = Character.toUpperCase(name.charAt(0))+name.substring(1);
+		displayName = name.toUpperCase(); //Character.toUpperCase(name.charAt(0))+name.substring(1);
 		descLabel = name;
 		health = 100;
 	}
@@ -150,7 +150,7 @@ public abstract class NPC implements Serializable {
 	 * @param s NPC dialog
 	 */
 	public void say(String s) {
-		Game.print(displayName + ": " + s);
+		Game.print(displayName + ":\n" + s);
 	}
 
 	/**

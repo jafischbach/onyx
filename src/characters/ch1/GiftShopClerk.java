@@ -6,18 +6,25 @@ import items.ch1.resort.*;
 public class GiftShopClerk extends NPC {
 
 	private int convo;
-	
+
 	public GiftShopClerk() {
 		super("bobo");
 		convo = 1;
 	}
-	
+
 	@Override
 	public void look() {
-		Game.print("The gift shop clerk is barely old enough to be considered an adult. He watches"
-				+ " you closely, hoping to make a sale. His nametag says \"Bobo\".");
+		if (convo == 12)
+			Game.print("The clerk is trying to hide behind one of the displays, sobbing quietly.");
+		else if (convo == 11)
+			Game.print("The clerk watches you, patiently waiting for your paycard.");
+		else if (convo == 14)
+			Game.print("The clerk tries to look busy re-arranging the glass figurines.");
+		else
+			Game.print("The gift shop clerk is barely old enough to be considered an adult. He watches"
+					+ " you closely, hoping to make a sale. His nametag says \"Bobo\".");
 	}
-	
+
 	@Override
 	public void give(String item) {
 		if (convo == 11 && item.equalsIgnoreCase("paycard")) {
@@ -25,10 +32,15 @@ public class GiftShopClerk extends NPC {
 			Paycard pc = (Paycard) Game.player.getItem("paycard");
 			pc.decrease(pc.balance());
 			say("Thanks! Enjoy your new orb. All sales are final!");
-			Game.print("The clerk returns your paycard and hands you the weird glowy orb thing. It's a little warm but not"
-					+ " very heavy. You stick it in your pocket, hoping you haven't just decided to expose yourself to cosmic"
-					+ " radiation of some kind.");
-			Game.player.addItem(new Orb());
+			Game.print(
+					"The clerk returns your paycard and hands you the weird glowy orb thing. It's a little warm but not"
+							+ " very heavy. You stick it in your pocket, hoping you haven't just decided to expose yourself to cosmic"
+							+ " radiation of some kind.");
+			Game.print(
+					"Not a bad gift for Shelly, you figure. That's one thing you can cross off" + " your itinerary!");
+			((Itinerary) Game.player.getItem("itinerary")).update(1);
+			Game.player.addItem(Game.getCurrentRoom().getItem("orb"));
+			Game.getCurrentRoom().removeItem("orb");
 			convo = 14;
 		} else if (convo == 12 && item.equalsIgnoreCase("cookie") && Game.player.has("cookie")) {
 			Game.print("You offer a cookie to the whimpering gift shop clerk. Bobo stares at the"
@@ -41,20 +53,20 @@ public class GiftShopClerk extends NPC {
 			Game.player.say("Except for a short stay in my pocket, yes!");
 			Game.print("Bobo eagerly accepts the cookie and immediately takes a huge bite. He"
 					+ " sighs in contentment, his worries forgotten.");
-			// convo = ???
+			convo = 17;
 		} else {
-			Game.print("Bobo doesn't want the "+item+".");
+			Game.print("Bobo doesn't want the " + item + ".");
 		}
 	}
-	
+
 	@Override
 	// 11 - ready to buy orb
 	// 12 - sad clerk
 	// 13 - not ready to buy
 	// 14 - bought orb
 	public void talk() {
-		Game.print(convo+"");
-		switch(convo) {
+		// Game.print(convo + "");
+		switch (convo) {
 		case 1:
 			convo1();
 			break;
@@ -100,15 +112,18 @@ public class GiftShopClerk extends NPC {
 		case 16:
 			convo16();
 			break;
+		case 17:
+			convo17();
+			break;
 		default:
 			Game.print("The clerk tries to avoid eye-contact.");
 			say("No returns! Story policy. Enjoy the rest our your stay.");
 		}
 	}
-	
+
 	@Override
 	public void response(int option) {
-		switch(convo) {
+		switch (convo) {
 		case 1:
 			response1(option);
 			break;
@@ -143,10 +158,9 @@ public class GiftShopClerk extends NPC {
 			response16(option);
 		}
 	}
-	
+
 	private void convo1() {
-		Game.print("The clerk smiles as you approach, hoping you're the sucker he's been waiting"
-				+ " for.");
+		Game.print("The clerk smiles as you approach, hoping you're the sucker he's been waiting" + " for.");
 		say("Good morning! Please take all the time you need to peruse our collection of exclusive"
 				+ " gifts. All of unsurpassed quality and value! Here you'll find the perfect"
 				+ " memento of your stay at The Snowy Egret. I'm sure you have many memories of"
@@ -158,9 +172,9 @@ public class GiftShopClerk extends NPC {
 		options[2] = "You know this place is a joke, right? All you sell here is over-priced crap.";
 		getResponse(options);
 	}
-	
+
 	private void response1(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Memorize? I didn't memorize anything. I just made that up. Right now. When you walked"
 					+ " in. I said to myself, \"Bobo, my boy, this here is a sophisticated client,"
@@ -195,29 +209,25 @@ public class GiftShopClerk extends NPC {
 			Game.player.say("Sure. No doubt. Cool stuff. Very colletable. I see that now.");
 			say("I saw you admiring our snowglobes. They're only for the most discerning of"
 					+ " collectors. And you are, for certain, a discerning collector. I could"
-					+ " tell right away. Shall I have one of the Rubicon Betas gift wrapped for"
-					+ " you?");
+					+ " tell right away. Shall I have one of the Rubicon Betas gift wrapped for" + " you?");
 			convo = 3;
 			convo3();
 		}
 	}
-	
+
 	private void convo2() {
-		String[] options = 
-			{"Totally. I was actually blown away by how sophisticated it was. I'm even more"
-					+ " impressed now that I know you thought it up on the spot. Just for me."
-					+ " I'm not used to such individualized service.",
-			 "Uh, no."};
+		String[] options = { "Totally. I was actually blown away by how sophisticated it was. I'm even more"
+				+ " impressed now that I know you thought it up on the spot. Just for me."
+				+ " I'm not used to such individualized service.", "Uh, no." };
 		getResponse(options);
 	}
-	
+
 	private void response2(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Individualized service is what The Snowy Egret is all about! That certainly"
 					+ " extends to my little domain here in the gift shop. Now, how about a"
-					+ " snowglobe? I saw you admiring our Rubicon Betas. Shall I have one"
-					+ " wrapped for you?");
+					+ " snowglobe? I saw you admiring our Rubicon Betas. Shall I have one" + " wrapped for you?");
 			convo = 3;
 			convo3();
 			break;
@@ -229,19 +239,17 @@ public class GiftShopClerk extends NPC {
 			convo4();
 		}
 	}
-	
+
 	private void convo3() {
-		String[] options = {
-				"Oh, hell no.", "Actually, I was looking for something a little less...touristy."};
+		String[] options = { "Oh, hell no.", "Actually, I was looking for something a little less...touristy." };
 		getResponse(options);
 	}
-	
+
 	private void response3(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Cuckoo clock? We have one with a perfect likeness of Rubicon's president! She'll"
-					+ " pop out once every hour to tell you the time. Isn't that just the most"
-					+ " precious thing?");
+					+ " pop out once every hour to tell you the time. Isn't that just the most" + " precious thing?");
 			convo = 5;
 			convo5();
 			break;
@@ -254,29 +262,26 @@ public class GiftShopClerk extends NPC {
 			convo6();
 		}
 	}
-	
+
 	private void convo4() {
-		Game.print("Tears pour down the poor guys face. He can't even manage to look at you."
+		Game.print("Tears pour down the poor guy's face. He can't even manage to look at you."
 				+ " You'll have to do something to cheer him up. Maybe bring him a cookie?");
-		Game.addFlag("sad clerk");
 		convo = 12;
 	}
-	
+
 	private void convo5() {
-		String[] options = {
-				"I can't think of a single thing less annoying than what you just described.",
+		String[] options = { "I can't think of a single thing less annoying than what you just described.",
 				"You know, Bobo. I was actually hoping to find something a little less touristy"
-				+ " than what you have on display out here. Maybe you could recommend a shop out"
-				+ " on the station's thoroughfare that I could visit instead?"};
+						+ " than what you have on display out here. Maybe you could recommend a shop out"
+						+ " on the station's thoroughfare that I could visit instead?" };
 		getResponse(options);
 	}
-	
+
 	private void response5(int options) {
-		switch(options) {
+		switch (options) {
 		case 1:
 			say("How about one of our best-selling plush collectible Snowy Egrets? What better"
-					+ " way to commemorate your stay with us than with one of these adorable and"
-					+ " cuddly friends?");
+					+ " way to commemorate your stay with us than with one of these adorable and" + " cuddly friends?");
 			convo = 7;
 			convo7();
 			break;
@@ -292,52 +297,47 @@ public class GiftShopClerk extends NPC {
 			convo6();
 		}
 	}
-	
+
 	private void convo6() {
-		String[] options = {
-				"As little as possible.",
-				"Everything I've got!",
-				"What are we talking about here?"};
+		String[] options = { "As little as possible.", "Everything I've got!", "What are we talking about here?" };
 		getResponse(options);
 	}
-	
+
 	private void response6(int option) {
-		switch(option) {
-			case 1:
-				say("That's too bad. I might have had something you'd be interested in. You know,"
-						+ " something a little \"back room\" if you take my meaning. But it's not"
-						+ " for the frugal. Sorry I couldn't help you. Good day.");
-				convo = 13;
-				break;
-			case 2:
-				Game.print("The clerk's smile widens.");
-				say("Excellent! In that case, I've got just the thing. Wait here and I'll go fetch"
-						+ " it.");
-				convo = 9;
-				convo9();
-				break;
-			case 3:
-				say("I've come into posession of a...er...exotic item.");
-				Game.player.say("Exotic item? What is an exotic item?");
-				say("I'm not sure of its origin or what it's actually for, but it looks exotic."
-						+ " A very unique item, I assure you.");
-				Game.player.say("Well, what is it?");
-				say("A glowy orb thing. It's not a gift shop item. I'd actually be selling this to"
-						+ " you myself. If you're willing to make a worthy offer that is.");
-				convo = 10;
-				convo10();
+		switch (option) {
+		case 1:
+			say("That's too bad. I might have had something you'd be interested in. You know,"
+					+ " something a little \"back room\" if you take my meaning. But it's not"
+					+ " for the frugal. Sorry I couldn't help you. Good day.");
+			convo = 13;
+			break;
+		case 2:
+			Game.print("The clerk's smile widens.");
+			say("Excellent! In that case, I've got just the thing. Wait here and I'll go fetch" + " it.");
+			convo = 9;
+			convo9();
+			break;
+		case 3:
+			say("I've come into posession of a...er...exotic item.");
+			Game.player.say("Exotic item? What is an exotic item?");
+			say("I'm not sure of its origin or what it's actually for, but it looks exotic."
+					+ " A very unique item, I assure you.");
+			Game.player.say("Well, what is it?");
+			say("A glowy orb thing. It's not a gift shop item. I'd actually be selling this to"
+					+ " you myself. If you're willing to make a worthy offer that is.");
+			convo = 10;
+			convo10();
 		}
 	}
-	
+
 	private void convo7() {
-		String[] options = {
-				"Sadly, I'm alergic to plush. And adorable. Can't stand adorable.",
-				"Look, Bobo. If you don't have anything worth buying, I'll just go look elsewhere."};
+		String[] options = { "Sadly, I'm alergic to plush. And adorable. Can't stand adorable.",
+				"Look, Bobo. If you don't have anything worth buying, I'll just go look elsewhere." };
 		getResponse(options);
 	}
-	
+
 	private void response7(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Aha! I've got it now. Now that we've gotten to know each other a bit better,"
 					+ " I know exactly what you're looking for!");
@@ -360,16 +360,14 @@ public class GiftShopClerk extends NPC {
 			convo6();
 		}
 	}
-	
+
 	private void convo8() {
-		String[] options = {
-				"You are not right.",
-				"Nope. That's it. I'm outta here. You suck at your job, Bobo."};
+		String[] options = { "You are not right.", "Nope. That's it. I'm outta here. You suck at your job, Bobo." };
 		getResponse(options);
 	}
-	
+
 	private void response8(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Hm. Tough case, this. Very tough case.");
 			Game.player.say("No problem, I'll just go...");
@@ -388,25 +386,26 @@ public class GiftShopClerk extends NPC {
 			convo9();
 		}
 	}
-	
+
 	private void convo9() {
 		Game.print("The clerk vanishes into a back room you didn't know was there and returns"
 				+ " a few minutes later with a weird glowy orb thing.");
 		say("Here it is! Magnificent, am I right? Just give me your paycard and it's yours!");
+		Game.getCurrentRoom().addItem(new Orb());
 		convo = 11;
 	}
-	
+
 	private void convo10() {
 		String[] options = {
-				"Sounds cool. I have "+((Paycard) Game.player.getItem("paycard")).balance()+" on my paycard. Will that do?",
+				"Sounds cool. I have " + ((Paycard) Game.player.getItem("paycard")).balance()
+						+ " on my paycard. Will that do?",
 				"I'll give you 50 for it. Final offer for your glowy thing.",
-				"Sorry, dude. I'm not buying a weird orb thing from some kid working in a gift shop."
-		};
+				"Sorry, dude. I'm not buying a weird orb thing from some kid working in a gift shop." };
 		getResponse(options);
 	}
-	
+
 	private void response10(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("I was looking for 500, but you know what? I'm willing to make a deal. I just know"
 					+ " the orb was meant for you. Wait here and I'll go fetch it.");
@@ -420,29 +419,27 @@ public class GiftShopClerk extends NPC {
 			convo = 13;
 			break;
 		case 3:
-			say("You're loss. Come back when you change your mind.");
+			say("Your loss. Come back when you change your mind.");
 			convo = 13;
 		}
 	}
-	
+
 	private void convo13() {
 		Game.print("The clerk smiles knowingly as you approach.");
 		say("Couldn't stay away? Just can't get the possibility of owning such an exotic item out of your mind? The orb"
 				+ " can be yours. If the price is right. Have you reconsidered?");
-		String[] options = {
-				"Yeah, okay. I'll meet your price.",
-				"Let's negotiate...",
-				"Nope. Still not buying your stupic orb thing. I'm just browsing."
-		};
+		String[] options = { "Yeah, okay. I'll meet your price.", "Let's negotiate...",
+				"Nope. Still not buying your stupic orb thing. I'm just browsing." };
 		getResponse(options);
 	}
-	
+
 	private void response13(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Oh, excellent. I'm so glad. You won't regret this. The orb is quite unique. And mysterious. Oh, and exotic, too."
 					+ " Yes, a unique, exotic, myserious orb of...er...exotic and mysterious origins. Just give me your paycard"
 					+ " and we'll complete the transaction.");
+			Game.getCurrentRoom().addItem(new Orb());
 			convo = 11;
 			break;
 		case 2:
@@ -454,19 +451,18 @@ public class GiftShopClerk extends NPC {
 			say("As you like. Let me know if you change your mind.");
 		}
 	}
-	
+
 	private void convo15() {
-		String[] options= {
-				"I have "+((Paycard) Game.player.getItem("paycard")).balance()+".",
-				"None of your damn business!"
-		};
+		String[] options = { "I have " + ((Paycard) Game.player.getItem("paycard")).balance() + ".",
+				"None of your damn business!" };
 		getResponse(options);
 	}
-	
+
 	private void response15(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
-			say("Excellent! I'll sell the orb for "+((Paycard) Game.player.getItem("paycard")).balance()+". Take it or leave it.");
+			say("Excellent! I'll sell the orb for " + ((Paycard) Game.player.getItem("paycard")).balance()
+					+ ". Take it or leave it.");
 			convo = 16;
 			convo16();
 			break;
@@ -475,19 +471,17 @@ public class GiftShopClerk extends NPC {
 			convo = 13;
 		}
 	}
-	
+
 	private void convo16() {
-		String[] options = {
-				"Okay. I'll take it.",
-				"Hello no! That's all I got!"
-		};
+		String[] options = { "Okay. I'll take it.", "Hell no! That's all I got!" };
 		getResponse(options);
 	}
-	
+
 	private void response16(int option) {
-		switch(option) {
+		switch (option) {
 		case 1:
 			say("Good. Good. Very good. Just give me your paycard and we're all set.");
+			Game.getCurrentRoom().addItem(new Orb());
 			convo = 11;
 			break;
 		case 2:
@@ -495,11 +489,12 @@ public class GiftShopClerk extends NPC {
 			convo = 13;
 		}
 	}
-	
+
 	private void convo17() {
-		say("Thanks for the cookie. So...um...can I interest you in a snowglobe?" 
+		say("Thanks for the cookie. So...um...can I interest you in a snowglobe?"
 				+ " I saw you admiring our Rubicon Betas. Shall I have one wrapped for you?");
 		convo = 3;
+		convo3();
 	}
-	
+
 }
