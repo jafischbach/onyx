@@ -1,6 +1,7 @@
 package characters.ch1;
 
 import game.*;
+import items.ch1.resort.*;
 
 public class GiftShopClerk extends NPC {
 
@@ -18,7 +19,29 @@ public class GiftShopClerk extends NPC {
 	}
 	
 	@Override
+	public void give(String item) {
+		if (convo == 11 && item.equalsIgnoreCase("paycard")) {
+			Game.print("You hand your paycard to the clerk who taps it against a device attached to his belt.");
+			Paycard pc = (Paycard) Game.player.getItem("paycard");
+			pc.decrease(pc.balance());
+			say("Thanks! Enjoy your new orb. All sales are final!");
+			Game.print("The clerk returns your paycard and hands you the weird glowy orb thing. It's a little warm but not"
+					+ " very heavy. You stick it in your pocket, hoping you haven't just decided to expose yourself to cosmic"
+					+ " radiation of some kind.");
+			Game.player.addItem(new Orb());
+			convo = 14;
+		} else {
+			Game.print("Bobo doesn't want the "+item+".");
+		}
+	}
+	
+	@Override
+	// 11 - ready to buy orb
+	// 12 - sad clerk
+	// 13 - not ready to buy
+	// 14 - bought orb
 	public void talk() {
+		Game.print(convo+"");
 		switch(convo) {
 		case 1:
 			convo1();
@@ -50,8 +73,24 @@ public class GiftShopClerk extends NPC {
 		case 10:
 			convo10();
 			break;
+		case 11:
+			say("Just hand me your paycard and this unique, exotic orb of exotic...er...mystery if yours!");
+			break;
+		case 12:
+			Game.print("The clerk is too distraught to speak to you.");
+			break;
+		case 13:
+			convo13();
+			break;
+		case 15:
+			convo15();
+			break;
+		case 16:
+			convo16();
+			break;
 		default:
-			Game.print("The clerk ignores you.");
+			Game.print("The clerk tries to avoid eye-contact.");
+			say("No returns! Story policy. Enjoy the rest our your stay.");
 		}
 	}
 	
@@ -80,7 +119,16 @@ public class GiftShopClerk extends NPC {
 			response8(option);
 			break;
 		case 10:
-			response10(option);		
+			response10(option);
+			break;
+		case 13:
+			response13(option);
+			break;
+		case 15:
+			response15(option);
+			break;
+		case 16:
+			response16(option);
 		}
 	}
 	
@@ -199,7 +247,7 @@ public class GiftShopClerk extends NPC {
 		Game.print("Tears pour down the poor guys face. He can't even manage to look at you."
 				+ " You'll have to do something to cheer him up. Maybe bring him a cookie?");
 		Game.addFlag("sad clerk");
-		convo = 11;
+		convo = 12;
 	}
 	
 	private void convo5() {
@@ -215,7 +263,7 @@ public class GiftShopClerk extends NPC {
 		switch(options) {
 		case 1:
 			say("How about one of our best-selling plush collectible Snowy Egrets? What better"
-					+ " way to commemorate your stay with us then one of these adorable and"
+					+ " way to commemorate your stay with us than with one of these adorable and"
 					+ " cuddly friends?");
 			convo = 7;
 			convo7();
@@ -247,7 +295,7 @@ public class GiftShopClerk extends NPC {
 				say("That's too bad. I might have had something you'd be interested in. You know,"
 						+ " something a little \"back room\" if you take my meaning. But it's not"
 						+ " for the frugal. Sorry I couldn't help you. Good day.");
-				convo = 11;
+				convo = 13;
 				break;
 			case 2:
 				Game.print("The clerk's smile widens.");
@@ -338,7 +386,7 @@ public class GiftShopClerk extends NPC {
 	
 	private void convo10() {
 		String[] options = {
-				"Sounds cool. I have 350 on my paycard. Will that do?",
+				"Sounds cool. I have "+((Paycard) Game.player.getItem("paycard")).balance()+" on my paycard. Will that do?",
 				"I'll give you 50 for it. Final offer for your glowy thing.",
 				"Sorry, dude. I'm not buying a weird orb thing from some kid working in a gift shop."
 		};
@@ -357,11 +405,82 @@ public class GiftShopClerk extends NPC {
 			say("That's a joke, I assume? I don't think you appreciate the value of unique"
 					+ " exotic items. Perhaps you're not the sophisticated customer I took you"
 					+ " for. Oh well. Good day to you.");
-			convo = 11;
+			convo = 13;
 			break;
 		case 3:
 			say("You're loss. Come back when you change your mind.");
+			convo = 13;
+		}
+	}
+	
+	private void convo13() {
+		Game.print("The clerk smiles knowingly as you approach.");
+		say("Couldn't stay away? Just can't get the possibility of owning such an exotic item out of your mind? The orb"
+				+ " can be yours. If the price is right. Have you reconsidered?");
+		String[] options = {
+				"Yeah, okay. I'll meet your price.",
+				"Let's negotiate...",
+				"Nope. Still not buying your stupic orb thing. I'm just browsing."
+		};
+		getResponse(options);
+	}
+	
+	private void response13(int option) {
+		switch(option) {
+		case 1:
+			say("Oh, excellent. I'm so glad. You won't regret this. The orb is quite unique. And mysterious. Oh, and exotic, too."
+					+ " Yes, a unique, exotic, myserious orb of...er...exotic and mysterious origins. Just give me your paycard"
+					+ " and we'll complete the transaction.");
 			convo = 11;
+			break;
+		case 2:
+			say("Sure! How much do you have on your paycard?");
+			convo = 15;
+			convo15();
+			break;
+		case 3:
+			say("As you like. Let me know if you change your mind.");
+		}
+	}
+	
+	private void convo15() {
+		String[] options= {
+				"I have "+((Paycard) Game.player.getItem("paycard")).balance()+".",
+				"None of your damn business!"
+		};
+		getResponse(options);
+	}
+	
+	private void response15(int option) {
+		switch(option) {
+		case 1:
+			say("Excellent! I'll sell the orb for "+((Paycard) Game.player.getItem("paycard")).balance()+". Take it or leave it.");
+			convo = 16;
+			convo16();
+			break;
+		case 2:
+			say("Well, then. I guess we can't do business after all. Let me know if you change your mind.");
+			convo = 13;
+		}
+	}
+	
+	private void convo16() {
+		String[] options = {
+				"Okay. I'll take it.",
+				"Hello no! That's all I got!"
+		};
+		getResponse(options);
+	}
+	
+	private void response16(int option) {
+		switch(option) {
+		case 1:
+			say("Good. Good. Very good. Just give me your paycard and we're all set.");
+			convo = 11;
+			break;
+		case 2:
+			say("That's the price. Come back if you change your mind.");
+			convo = 13;
 		}
 	}
 	
