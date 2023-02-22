@@ -30,6 +30,18 @@ public class GiftShopClerk extends NPC {
 					+ " radiation of some kind.");
 			Game.player.addItem(new Orb());
 			convo = 14;
+		} else if (convo == 12 && item.equalsIgnoreCase("cookie") && Game.player.has("cookie")) {
+			Game.print("You offer a cookie to the whimpering gift shop clerk. Bobo stares at the"
+					+ " cookie. Slowly his eyes widen and the tears stop falling.");
+			say("Is that...is that one of Mr. Gustav's cookies?");
+			Game.player.say("It is.");
+			say("One of Mr. Gustav's chocholate-mint-strawberry cookies?");
+			Game.player.say("It sure is.");
+			say("Freshly baked?");
+			Game.player.say("Except for a short stay in my pocket, yes!");
+			Game.print("Bobo eagerly accepts the cookie and immediately takes a huge bite. He"
+					+ " sighs in contentment, his worries forgotten.");
+			// convo = ???
 		} else {
 			Game.print("Bobo doesn't want the "+item+".");
 		}
@@ -482,6 +494,12 @@ public class GiftShopClerk extends NPC {
 			say("That's the price. Come back if you change your mind.");
 			convo = 13;
 		}
+	}
+	
+	private void convo17() {
+		say("Thanks for the cookie. So...um...can I interest you in a snowglobe?" 
+				+ " I saw you admiring our Rubicon Betas. Shall I have one wrapped for you?");
+		convo = 3;
 	}
 	
 }

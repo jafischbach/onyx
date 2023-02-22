@@ -33,7 +33,7 @@ CH1_RESORT_2ND_FLOOR
 The second floor (deck?) lobby features elevators along the east wall and glass doors to the north and south. Sparkling green letters mounted above the northern doors announce "Gustav Murray's Cajun Cafe and Ice Cream Bar". You've had three meals there every day this week! You have no idea who the hell Gustav Murray is, but the dude doesn't disappoint. The glass doors along the south wall more modestly bear the name "The Snowy Egret Health Spa and Meditation Experience". Sadly, the spa wasn't included in your vacation package and you've never seen the other side of those doors.
 #
 CH1_RESORT_RESTAURANT
-Gustav Murray's Cajun Cafe and Ice Cream Bar! You're pretty sure there's nothing actually Cajun about the place. Aside from that, this place is amazing! It's all self-service. There's a screen embedded in each of the tables that you order from and your food is lowered from the ceiling. So cool! You even dig the weird-ass music.
+Gustav Murray's Cajun Cafe and Ice Cream Bar! You're pretty sure there's nothing actually Cajun about the place. Aside from that, this place is amazing! It's all self-service. There's a screen embedded in each of the tables that you order from and your food is lowered from the ceiling. So cool! You even dig the weird-ass music. There's even a plate of complimentary, freshly-baked cookies by the door in the south wall.
 #
 CH1_RESORT_ELEVATOR
 The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labelled "2nd Floor", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and pentouse levels. You don't have access to those. The doors lead west to the 2nd floor lobby.
