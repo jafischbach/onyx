@@ -37,6 +37,10 @@ public class Itinerary extends Item {
 		case 1:
 			list[1] = "Buy gift for Shelly (DONE!)";
 			completed++;
+			break;
+		case 2:
+			list[2] = "Visit observation deck (DONE!)";
+			completed++;
 		}
 	}
 	

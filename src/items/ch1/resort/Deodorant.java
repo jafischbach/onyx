@@ -25,7 +25,8 @@ public class Deodorant extends Item {
 				Game.print("You take a deep whif and are relieved to discover that you are no longer"
 						+ " stinky. Now you can venture out in public with minimal shame!");
 				Game.removeFlag("smelly");
-			}
+			} else
+				Game.print("Don't over-use that stuff!");
 		} else {
 			Game.print("You don't have the stick of deodorant.");
 		}

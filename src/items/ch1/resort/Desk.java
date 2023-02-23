@@ -20,6 +20,7 @@ public class Desk extends Item {
 				Deodorant d = new Deodorant();
 				r.addItem(d);
 				r.addItem(d, "stick");
+				r.addItem(d, "stick of deodorant");
 			}
 		}
 	}

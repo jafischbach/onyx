@@ -5,10 +5,10 @@ CH1_RESORT_PLAYER_BATHROOM
 There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "commode" state (meaning there is a hole in the floor). A door leads south back to your room.
 #
 CH1_RESORT_PLAYER_BATHROOM_A
-There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "shower" state (meaning there is a hole in the floor and a nozel protruding from the ceiling). A door leads south back to your room.
+There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "shower" state (meaning there is a hole in the floor and a nozzel protruding from the ceiling). A door leads south back to your room.
 #
 CH1_RESORT_PLAYER_BATHROOM_B
-There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "sink" state (meaning there is a hole in the floor and a nozel protruding from the wall). A door leads south back to your room.
+There is a combination sink/commode/shower apparatus and absolutely nothing else. A button switches among the three modes of the apparatus. It is currently in the "sink" state (meaning there is a hole in the floor and a nozzel protruding from the wall). A door leads south back to your room.
 #
 CH1_RESORT_SOUTH_HALL
 This carpeted hallway features doors to various guest rooms. These are all economy rooms, of course. You don't have access to the suite or penthouse levels of The Snowy Egret. There are doorways in the east (to your room), west, and south walls. The hallway extends north.
@@ -36,10 +36,10 @@ CH1_RESORT_RESTAURANT
 Gustav Murray's Cajun Cafe and Ice Cream Bar! You're pretty sure there's nothing actually Cajun about the place. Aside from that, this place is amazing! It's all self-service. There's a screen embedded in each of the tables that you order from and your food is lowered from the ceiling. So cool! You even dig the weird-ass music. There's even a plate of complimentary, freshly-baked cookies by the door in the south wall.
 #
 CH1_RESORT_ELEVATOR
-The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labelled "2nd Floor", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and pentouse levels. You don't have access to those. The doors lead west to the 2nd floor lobby.
+The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labeled "Lobby", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and penthouse levels; you don't have access to those. The doors lead west to the 2nd floor lobby.
 #
 CH1_RESORT_ELEVATOR_B
-The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labelled "2nd Floor", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and pentouse levels. You don't have access to those. The doors lead west to the Observation Lounge.
+The elevator is large enough to hold a dozen guests. It's just you right now though. There are buttons labeled "Lobby", "Suites", "Penthouse", and "Observation Lounge". Don't bother with the suite and penthouse levels. You don't have access to those. The doors lead west to the Observation Lounge.
 #
 CH1_RESORT_OBSERVATION_LOUNGE
 You've spent a lot of time here watching the huge viewscreen. They don't build actual windows on a space station, but the viewscreen offers a convincing facsimile. A few other guests are milling about, but no one you've gotten to know.

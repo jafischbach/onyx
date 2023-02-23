@@ -24,8 +24,12 @@ public class Closet extends Item {
 			if (Game.hasFlag("undressed")) {
 				Game.print("You slide the closet open and find freshly-laundered clothes.");
 				Room r = Game.getCurrentRoom();
-				if (!r.hasItem("clothes"))
-					r.addItem(new Clothes());
+				if (!r.hasItem("clothes")) {
+					Clothes clothes = new Clothes();
+					r.addItem(clothes);
+					r.addItem(clothes, "shirt");
+					r.addItem(clothes, "pants");
+				}
 			} else
 				Game.print("You slide the closet open and find nothing else of interest.");
 		} else

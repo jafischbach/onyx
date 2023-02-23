@@ -24,11 +24,11 @@ public class Hole extends Item {
 						+ " okay, there was that one incident after the seafood buffet. It" + " didn't back up twice!");
 				break;
 			case 1:
-				Game.print("Ok, ick. Seriously? You do NOT want to look more closely at the hole" + " in the floor.");
+				Game.print("Oh, ick. Seriously? You do NOT want to look more closely at the hole" + " in the floor.");
 				break;
 			case 2:
 				Game.print("No, dude. Trust me on this. You do not want to look inside the"
-						+ " hole you've spent a month taking a dump in.");
+						+ " hole you've spent a week taking a dump in.");
 				break;
 			case 3:
 				Game.print("I'm learning things about you that I'd rather not know. Stop"

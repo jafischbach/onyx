@@ -36,4 +36,20 @@ public class Clothes extends Item {
 		}
 	}
 	
+	@Override
+	public void use() {
+		if (Game.player.has("clothes"))
+			Game.print("You're already wearing your clothes.");
+		else
+			Game.print("You should take them first.");
+	}
+	
+	@Override
+	public void uniqueCommand(String command) {
+		if (command.equals("wear"))
+			use();
+		else
+			super.uniqueCommand(command);
+	}
+	
 }

@@ -24,7 +24,7 @@ public class GameGUI {
 	public static final Color PLAYER_DIALOG_COLOR = new Color(0xa000c8);
 
 	public static final String ICON_FILENAME = "bartenderIcon.png";
-	public static final int WINDOW_HEIGHT = 700;
+	public static final int WINDOW_HEIGHT = 800;
 	public static final int WINDOW_WIDTH = 800;
 
 	protected static JTextArea display;

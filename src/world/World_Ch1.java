@@ -29,7 +29,9 @@ public class World_Ch1 {
 		
 		playerRoom.addExit(playerBath, Room.NORTH);
 		playerRoom.addExit(southHall, Room.WEST);
-		playerRoom.addItem(new Bed());
+		Bed bed = new Bed();
+		playerRoom.addItem(bed);
+		playerRoom.addItem(bed, "twin bed");
 		playerRoom.addItem(new Closet());
 		playerRoom.addItem(new Desk());
 		playerRoom.addItem(new ESOnButton());
@@ -43,6 +45,8 @@ public class World_Ch1 {
 		playerBath.addItem(new Nozzel());
 		playerBath.addItem(new Hole());
 		playerBath.addItem(new Grate());
+		playerBath.addSimpleItem("shower", "CH1_PLAYER_BATHROOM_SHOWER",
+				"\"Shower\" is really too strong a word for the multi-purpose apparatus.");
 		
 		southHall.addExit(playerRoom, Room.EAST);	
 		southHall.addExit(lobby, Room.NORTH);
@@ -71,6 +75,12 @@ public class World_Ch1 {
 		elevator.addItem(new LobbyButton());
 		
 		observation.addExit(elevator, Room.EAST);
+		Viewscreen viewscreen = new Viewscreen();
+		Guest guest = new Guest();
+		observation.addItem(viewscreen);
+		observation.addItem(viewscreen, "screen");
+		observation.addNPC(guest);
+		observation.addNPC(guest, "guests");
 		
 		restaurant.addExit(secondFloor, Room.SOUTH);
 		restaurant.addItem(new Cookie());
