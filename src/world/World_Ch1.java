@@ -61,6 +61,11 @@ public class World_Ch1 {
 		northHall.addExit(pool, Room.NORTH);
 		
 		pool.addExit(northHall, Room.SOUTH);
+		pool.addItem(new Pool());
+		PoolAttendant miri = new PoolAttendant();
+		pool.addNPC(miri);
+		pool.addNPC(miri, "pool attendant");
+		pool.addNPC(miri, "attendant");
 		
 		giftShop.addExit(lobby, Room.WEST);
 		makeGiftShop(giftShop);

@@ -173,9 +173,15 @@ public class Room implements Serializable {
 	public void removeNPC(String name) {
 		if (npcs != null) {
 			NPC removedNPC = npcs.remove(name);
-			for(Map.Entry<String, NPC> entry : npcs.entrySet())
+			Iterator<Map.Entry<String, NPC>> it = npcs.entrySet().iterator();
+			while(it.hasNext()) {
+				Map.Entry<String, NPC> entry = it.next();
 				if (removedNPC == entry.getValue())
-					npcs.remove(entry.getKey());
+					it.remove();
+			}
+//			for(Map.Entry<String, NPC> entry : npcs.entrySet())
+//				if (removedNPC == entry.getValue())
+//					npcs.remove(entry.getKey());
 		}
 	}
 
