@@ -33,7 +33,7 @@ public class GameGUI {
 	protected static JMenuItem saveMenuItem;
 
 	private static JLabel roomNameLabel;
-	private static JTextArea roomDisplay;
+	protected static JTextArea roomDisplay;
 	private static String lastCommand = "";
 	private static String lastDialog = "";
 
@@ -52,6 +52,10 @@ public class GameGUI {
 		roomDisplay.setText(r.getDesc());
 	}
 
+	public static void clearDisplay() {
+		display.setText("");
+	}
+	
 	/**
 	 * Sets the main text display's color.
 	 * 
@@ -74,6 +78,7 @@ public class GameGUI {
 	 * Builds the window for the game.
 	 */
 	protected static void buildWindow() {
+		if (window != null) return;
 		window = new JFrame();
 		window.setTitle(World.TITLE);
 		try {
@@ -232,9 +237,6 @@ public class GameGUI {
 				if (option == JOptionPane.YES_OPTION) {
 					Game.player.clearInventory();
 					Game.startGame();
-					World.buildWorld();
-					display.setText("");
-					Game.printRoom();
 					command.setEditable(true);
 					saveMenuItem.setEnabled(true);
 				}

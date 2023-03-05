@@ -6,7 +6,7 @@ public class BathroomApparatus extends Item {
 
 	protected int state;
 
-	private long timeUsed;
+	protected long timeUsed;
 
 	public BathroomApparatus() {
 		super("apparatus");

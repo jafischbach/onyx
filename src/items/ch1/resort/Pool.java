@@ -16,8 +16,11 @@ public class Pool extends Item {
 	
 	@Override
 	public void use() {
-		Game.print("Are you mad? It's a pool. On a space station. Don't you have, maybe, a tiny"
-				+ " problem with that? No, you are not getting into that pool.");
+		if (Game.player.has("floaty"))
+			Game.print("Use the floaty if you insist on getting into the pool.");
+		else
+			Game.print("Are you mad? It's a pool. On a space station. Don't you have, maybe, a tiny"
+				+ " problem with that?");
 	}
 	
 }

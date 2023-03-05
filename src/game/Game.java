@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Component;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,11 +44,6 @@ public class Game {
 	 */
 	public static void main(String[] args) {
 		startGame();
-		World.buildWorld();
-		if (CONSOLE)
-			playText();
-		else
-			playGUI();
 	}
 
 	/**
@@ -129,6 +125,11 @@ public class Game {
 			GameGUI.displayRoom(currentRoom);
 	}
 	
+	public static void clearDisplay() {
+		if (!CONSOLE)
+			GameGUI.clearDisplay();
+	}
+	
 	/**
 	 * Alerts GameGUI that the next command entered by the user
 	 * is the response to a NPC dialog prompt.
@@ -154,17 +155,25 @@ public class Game {
 	 * @param prompt prompt to display to player
 	 * @return player's response (either 'y' or 'n')
 	 */
-	public static char getYesNo(String prompt) {
+	private static char getYesNo(String prompt, Component parent) {
 		if (CONSOLE) {
 			System.out.print(prompt);
 			return Character.toLowerCase(input.nextLine().charAt(0));
 		} else {
-			int option = JOptionPane.showConfirmDialog(GameGUI.window, prompt, "Decision time!",
+			int option = JOptionPane.showConfirmDialog(parent, prompt, "Decision time!",
 					JOptionPane.YES_NO_OPTION);
 			return option == JOptionPane.YES_OPTION ? 'y' : 'n';
 		}
 	}
 
+	public static char getYesNo(String prompt) {
+		return getYesNo(prompt, GameGUI.window);
+	}
+	
+	public static char getYesNoDialog(String prompt) {
+		return getYesNo(prompt, GameGUI.roomDisplay);
+	}
+	
 	/**
 	 * Prompts the player to enter a number.
 	 * 
@@ -517,6 +526,11 @@ public class Game {
 			loadDataFile("items.dat", itemDescs);
 			loadDataFile("npcs.dat", npcDescs);
 		}
+		World.buildWorld();
+		if (CONSOLE)
+			playText();
+		else
+			playGUI();
 	}
 
 	// Main game loop for console applications. 

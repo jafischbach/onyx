@@ -5,7 +5,7 @@ import game.*;
 public class Hole extends Item {
 
 	private int looked;
-	private long timeUsed;
+	protected long timeUsed;
 
 	public Hole() {
 		super("hole");

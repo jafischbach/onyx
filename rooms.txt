@@ -24,6 +24,9 @@ Brightly lit and colored in shades of blue and green, this hallway leads to the 
 CH1_RESORT_POOL
 No one is currently enjoying the large pool that dominates the room. In fact, the only other people here are Urias and a pool attendant. The only exit is to the south.
 #
+CH1_RESORT_POOL_A
+No one is currently enjoying the large pool that dominates the room. In fact, the only other person here is Urias. The only exit is to the south.
+#
 CH1_RESORT_GIFT_SHOP
 You've avoided this place since your first day here because you assumed it was full of useless, over-priced, tourist crap. Looking around now, you are not at all surprised to learn that your assumption was correct. Snowglobes? Cuckoo clocks? Stuffed animals? Glass figurines? Weird schlock to be selling on a space station.
 
